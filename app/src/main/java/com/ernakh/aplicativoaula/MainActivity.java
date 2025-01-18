@@ -2,6 +2,9 @@ package com.ernakh.aplicativoaula;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +12,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("CicloDeVida", "onCreate() chamado");
+        Toast.makeText(this, "onCreate() chamado", Toast.LENGTH_SHORT).show();
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -22,6 +29,24 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void sortearNumero(View view)
+    {
+        try
+        {
+            Random random = new Random();
+            int valor = random.nextInt(100);
+            TextView textView = findViewById(R.id.txvNumero);
+            textView.setText(String.valueOf(valor));
+
+        }
+        catch (Exception e)
+        {
+            var originalException = e.getCause();
+            Log.d("Erro", "Original exception: $originalException");
+        }
+
     }
 
     @Override
