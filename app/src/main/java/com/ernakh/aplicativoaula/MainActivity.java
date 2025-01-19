@@ -1,5 +1,6 @@
 package com.ernakh.aplicativoaula;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sortearNumero(View view)
     {
-        try
-        {
+        try {
             Random random = new Random();
             int valor = random.nextInt(100);
             TextView textView = findViewById(R.id.txvNumero);
@@ -45,8 +45,14 @@ public class MainActivity extends AppCompatActivity {
         {
             var originalException = e.getCause();
             Log.d("Erro", "Original exception: $originalException");
-        }
 
+        }
+    }
+
+    public void carregarActivityLerUsuario(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, LerDoUsuarioActivity.class);
+        startActivity(intent);
     }
 
     @Override
