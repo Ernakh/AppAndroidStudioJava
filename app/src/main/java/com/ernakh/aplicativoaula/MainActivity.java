@@ -55,6 +55,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void carregarActivitySqlLite(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, SqlLiteActivity.class);
+        startActivity(intent);
+    }
+
+    public void carregarActivityConsumirAPI(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, ConsumirAPIActivity.class);
+        startActivity(intent);
+    }
+
+    public void carregarActivityCamera(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
