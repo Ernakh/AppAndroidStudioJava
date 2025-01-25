@@ -16,10 +16,12 @@ import androidx.core.view.WindowInsetsCompat;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         Log.d("CicloDeVida", "onCreate() chamado");
         Toast.makeText(this, "onCreate() chamado", Toast.LENGTH_SHORT).show();
@@ -34,18 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void sortearNumero(View view)
     {
-        try {
+        try
+        {
             Random random = new Random();
             int valor = random.nextInt(100);
             TextView textView = findViewById(R.id.txvNumero);
             textView.setText(String.valueOf(valor));
-
         }
         catch (Exception e)
         {
             var originalException = e.getCause();
             Log.d("Erro", "Original exception: $originalException");
-
         }
     }
 
@@ -55,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void carregarActivitySqlLite(View view)
+    public void carregarActivityGPS(View view)
     {
-        Intent intent = new Intent(MainActivity.this, SqlLiteActivity.class);
+        Intent intent = new Intent(MainActivity.this, GPS_Activity.class);
         startActivity(intent);
     }
 
@@ -74,37 +75,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
         Log.d("CicloDeVida", "onStart() chamado");
     }
 
     @Override
-    protected void onRestart() {
+    protected void onRestart()
+    {
         super.onRestart();
         Log.d("CicloDeVida", "onRestart() chamado");
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         Log.d("CicloDeVida", "onResume() chamado");
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         Log.d("CicloDeVida", "onPause() chamado");
     }
 
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
         Log.d("CicloDeVida", "onStop() chamado");
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         Log.d("CicloDeVida", "onDestroy() chamado");
     }
