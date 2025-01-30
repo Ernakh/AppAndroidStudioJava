@@ -41,4 +41,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Biblioteca para fazer requisições HTTP
+    implementation(libs.okhttp)
+
+    // Biblioteca para converter JSON em objetos Java
+    implementation(libs.gson)
+
+    // Biblioteca para carregar imagens no app
+    implementation(libs.glide)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+
 }

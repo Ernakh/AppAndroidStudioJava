@@ -39,7 +39,8 @@ public class BancoHelper extends SQLiteOpenHelper
     // **Métodos CRUD**
 
     // **Inserir um usuário**
-    public long inserirUsuario(String nome, String email) {
+    public long inserirUsuario(String nome, String email)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOME, nome);
@@ -48,13 +49,15 @@ public class BancoHelper extends SQLiteOpenHelper
     }
 
     // **Buscar todos os usuários**
-    public Cursor listarUsuarios() {
+    public Cursor listarUsuarios()
+    {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
     // **Atualizar um usuário**
-    public int atualizarUsuario(int id, String nome, String email) {
+    public int atualizarUsuario(int id, String nome, String email)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOME, nome);
@@ -63,7 +66,8 @@ public class BancoHelper extends SQLiteOpenHelper
     }
 
     // **Excluir um usuário**
-    public int excluirUsuario(int id) {
+    public int excluirUsuario(int id)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[]{String.valueOf(id)});
     }
