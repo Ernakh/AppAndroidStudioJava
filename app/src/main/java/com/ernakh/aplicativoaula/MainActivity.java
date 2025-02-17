@@ -19,12 +19,24 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity
 {
 
+    static final String STATE_SCORE = "playerScore";
+    static final String STATE_LEVEL = "playerLevel";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         Log.d("CicloDeVida", "onCreate() chamado");
         Toast.makeText(this, "onCreate() chamado", Toast.LENGTH_SHORT).show();
+
+        if (savedInstanceState != null) {
+            // Restaura os valores do estado salvo
+            int mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
+            int mCurrentLevel = savedInstanceState.getInt(STATE_LEVEL);
+        } else {
+            // inicializa as variáveis com valores padrão
+        }
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -78,6 +90,20 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, SqlLiteActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState)
+    {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.d("CicloDeVida", "onSaveInstanceState() chamado");
+
+        // Salva o estado atual do jogador
+        savedInstanceState.putInt(STATE_SCORE, 100);
+        savedInstanceState.putInt(STATE_LEVEL, 1);
+        // Invoca a super classe, para que seja possível salvar o estado
+        super.onSaveInstanceState(savedInstanceState);
+
     }
 
     @Override
