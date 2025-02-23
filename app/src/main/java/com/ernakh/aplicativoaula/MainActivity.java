@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity
         savedInstanceState.putInt(STATE_LEVEL, 1);
         // Invoca a super classe, para que seja possível salvar o estado
         super.onSaveInstanceState(savedInstanceState);
-
     }
 
     @Override
