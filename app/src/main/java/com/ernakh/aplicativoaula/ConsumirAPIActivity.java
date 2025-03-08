@@ -2,7 +2,9 @@ package com.ernakh.aplicativoaula;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -47,6 +49,17 @@ public class ConsumirAPIActivity extends AppCompatActivity
 
         textTitle = findViewById(R.id.textTitle);
         imagePhoto = findViewById(R.id.imagePhoto);
+
+        /*Spinner spinner = findViewById(R.id.spinner);
+        Button btnCheck = findViewById(R.id.btnCheck);
+
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String opcaoSelecionada = spinner.getSelectedItem().toString();
+                Toast.makeText(ConsumirAPIActivity.this, "Selecionado: " + opcaoSelecionada, Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

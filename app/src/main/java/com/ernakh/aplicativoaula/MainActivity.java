@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public  void eventoBotao(View view)
+    {
+        Toast.makeText(this, "O botão foi clicado!", Toast.LENGTH_SHORT).show();
+    }
+
     public void sortearNumero(View view)
     {
         try

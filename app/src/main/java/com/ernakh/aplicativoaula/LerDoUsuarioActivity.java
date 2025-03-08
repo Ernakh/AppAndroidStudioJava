@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +67,8 @@ public class LerDoUsuarioActivity extends AppCompatActivity
             }
         });
 
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -89,5 +94,20 @@ public class LerDoUsuarioActivity extends AppCompatActivity
         resultado = "Seu nome é " + txtNome.getText().toString() + " e você tem " + (anoAtual - Integer.parseInt((txtAno.getText().toString()))) + " anos de vida!";
 
         textView.setText(resultado);
+    }
+
+    public void checkRadios(View view) {
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+        if (selectedId == -1) {
+            Toast.makeText(LerDoUsuarioActivity.this, "Selecione uma opção", Toast.LENGTH_SHORT).show();
+        } else {
+            RadioButton selectedRadioButton = findViewById(selectedId);
+            String selectedText = selectedRadioButton.getText().toString();
+
+            Toast.makeText(LerDoUsuarioActivity.this, "Selecionado: " + selectedText, Toast.LENGTH_SHORT).show();
+        }
     }
 }
