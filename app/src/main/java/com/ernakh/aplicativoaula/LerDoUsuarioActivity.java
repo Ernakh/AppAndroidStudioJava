@@ -3,6 +3,7 @@ package com.ernakh.aplicativoaula;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -26,6 +27,9 @@ public class LerDoUsuarioActivity extends AppCompatActivity
 {
 
     private List<CheckBox> checkBoxList = new ArrayList<>();
+
+    private Spinner spinner;
+    private Button btnSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,6 +77,31 @@ public class LerDoUsuarioActivity extends AppCompatActivity
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        spinner = findViewById(R.id.spinner);
+        btnSpinner = findViewById(R.id.btnSpinner);
+
+        // Criar um ArrayAdapter usando o array de strings.xml
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.opcoes_spinner, android.R.layout.simple_spinner_item);
+
+        // Define o layout para os itens do spinner
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Associa o adapter ao Spinner
+        spinner.setAdapter(adapter);
+
+        // Configuração do clique do botão
+        btnSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obtém o item selecionado no Spinner
+                String selectedItem = spinner.getSelectedItem().toString();
+
+                // Exibe a seleção em um Toast
+                Toast.makeText(LerDoUsuarioActivity.this, "Selecionado: " + selectedItem, Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
