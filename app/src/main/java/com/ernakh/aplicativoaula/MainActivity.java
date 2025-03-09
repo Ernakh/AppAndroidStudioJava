@@ -97,6 +97,13 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void carregarActivityLayout(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, ScrollViewActivity.class);
+        //Intent intent = new Intent(MainActivity.this, ConstraintLayoutActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState)
     {
