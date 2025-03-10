@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:onClick="carregarActivityLayout"
         android:text="LayoutActivity"
-        android:drawableTop="@drawable/sell_24px"
+        android:drawableTop="@drawable/manufacturing_24px"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button13" />
