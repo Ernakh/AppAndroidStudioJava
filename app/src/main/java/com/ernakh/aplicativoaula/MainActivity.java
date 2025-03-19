@@ -1,6 +1,7 @@
 package com.ernakh.aplicativoaula;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -85,6 +86,44 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void tocarMP3(View view)
+    {
+        Uri link = Uri.parse("https://cdn.freesound.org/previews/130/130809_1648170-lq.mp3");
+        Intent it = new Intent(Intent.ACTION_VIEW, link);
+        it.setType("audio/*");
+        startActivity(it);
+    }
+
+    public void verContato(View view)
+    {
+        /*Uri uri = Uri.parse("content://com.android.contacts/contacts/1");
+        Intent it = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(it);*/
+
+        Uri uri = Uri.parse("content://com.android.contacts/contacts/");
+        Intent it = new Intent(Intent.ACTION_PICK, uri);
+        startActivity(it);
+    }
+
+    public void verMaps(View view)
+    {
+        /*Uri uriGeo = Uri.parse("geo:0,0?q=Floriano+Peixoto,Curitiba");
+        Intent it = new Intent(Intent.ACTION_VIEW, uriGeo);
+        startActivity(it);*/
+
+        /*Uri uriGeo = Uri.parse("geo:-25.443195,-49.280977");
+        Intent it = new Intent(Intent.ACTION_VIEW, uriGeo);
+        startActivity(it);*/
+
+        String partida = "-25.443195,-49.290877";
+        String destino = "-25.442207,-49.278403";
+        String url = "http://maps.google.com/maps?f=d&saddr="+partida+"&daddr="+destino+"&hl=pt";
+        Uri uriGeo = Uri.parse(url);
+        Intent it = new Intent(Intent.ACTION_VIEW, uriGeo);
+        startActivity(it);
+
+    }
+
     public void carregarActivityCamera(View view)
     {
         Intent intent = new Intent(MainActivity.this, CameraActivity.class);
@@ -102,6 +141,20 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this, ScrollViewActivity.class);
         //Intent intent = new Intent(MainActivity.this, ConstraintLayoutActivity.class);
         startActivity(intent);
+    }
+
+    public void abrirNavegador(View view)
+    {
+        Uri uri = Uri.parse("http://www.google.com.br");
+        Intent it = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(it);
+    }
+
+    public void fazerLigacao(View view)
+    {
+        Uri uri = Uri.parse("tel:55984093600");
+        Intent it = new Intent(Intent.ACTION_CALL, uri);
+        startActivity(it);
     }
 
     @Override

@@ -82,17 +82,12 @@ public class LerDoUsuarioActivity extends AppCompatActivity
         spinner = findViewById(R.id.spinner);
         btnSpinner = findViewById(R.id.btnSpinner);
 
-        // Criar um ArrayAdapter usando o array de strings.xml
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.opcoes_spinner, android.R.layout.simple_spinner_item);
 
-        // Define o layout para os itens do spinner
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Associa o adapter ao Spinner
         spinner.setAdapter(adapter);
 
-        // Configuração do clique do botão
         btnSpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
