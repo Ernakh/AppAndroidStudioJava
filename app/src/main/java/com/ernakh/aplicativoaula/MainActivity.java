@@ -86,6 +86,12 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void carregarActivityInternacionalizacao(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, InternacionalizacaoActivity.class);
+        startActivity(intent);
+    }
+
     public void tocarMP3(View view)
     {
         Uri link = Uri.parse("https://cdn.freesound.org/previews/130/130809_1648170-lq.mp3");

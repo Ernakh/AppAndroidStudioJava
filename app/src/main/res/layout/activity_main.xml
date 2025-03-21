@@ -121,9 +121,9 @@
         android:id="@+id/button17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:onClick="abrirNavegador"
         android:text="Navegador"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button15" />
 
@@ -163,4 +163,13 @@
         android:text="MP3"
         app:layout_constraintStart_toEndOf="@+id/button20"
         app:layout_constraintTop_toBottomOf="@+id/button17" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="carregarActivityInternacionalizacao"
+        android:text="Internacionalização"
+        app:layout_constraintStart_toEndOf="@+id/button17"
+        tools:layout_editor_absoluteY="611dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

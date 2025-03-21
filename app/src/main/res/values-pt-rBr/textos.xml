@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txtNome">Nome</string>
+    <string name="txtEnd">Endereço</string>
+    <string name="btnEnviar">Enviar</string>
+</resources>

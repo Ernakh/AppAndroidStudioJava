@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="txtNome" tools:ignore="ExtraTranslation">Nome</string>
+    <string name="txtEnd" tools:ignore="ExtraTranslation">Indirizzo</string>
+    <string name="btnEnviar" tools:ignore="ExtraTranslation">Inviare</string>
+</resources>
