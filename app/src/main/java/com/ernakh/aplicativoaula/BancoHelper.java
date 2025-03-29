@@ -37,7 +37,6 @@ public class BancoHelper extends SQLiteOpenHelper
     }
 
     // **Métodos CRUD**
-
     // **Inserir um usuário**
     public long inserirUsuario(String nome, String email)
     {

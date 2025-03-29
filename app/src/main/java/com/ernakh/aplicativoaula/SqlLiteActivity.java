@@ -77,7 +77,7 @@ public class SqlLiteActivity extends AppCompatActivity
                 edtNome.setText(nome);
                 edtEmail.setText(email);
 
-                btnSalvar.setText("Atualizar");
+                btnSalvar.setText("Atuaaalizar");
 
                 btnSalvar.setOnClickListener(v ->
                 {
@@ -92,6 +92,25 @@ public class SqlLiteActivity extends AppCompatActivity
                             edtNome.setText("");
                             edtEmail.setText("");
                             btnSalvar.setText("Salvar");
+
+                            btnSalvar.setOnClickListener(v2 -> {
+                                String nomex = edtNome.getText().toString();
+                                String emailx = edtEmail.getText().toString();
+
+                                if (!nomex.isEmpty() && !emailx.isEmpty()) {
+                                    long resultadoInsert = databaseHelper.inserirUsuario(nomex, emailx);
+                                    if (resultadoInsert != -1) {
+                                        Toast.makeText(this, "Usuário salvo!", Toast.LENGTH_SHORT).show();
+                                        edtNome.setText("");
+                                        edtEmail.setText("");
+                                        carregarUsuarios();
+                                    } else {
+                                        Toast.makeText(this, "Erro ao salvar!", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         } else {
                             Toast.makeText(this, "Erro ao atualizar!", Toast.LENGTH_SHORT).show();
                         }
