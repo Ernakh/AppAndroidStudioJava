@@ -136,6 +136,12 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void carregarActivityThreads(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, ThreadsActivity.class);
+        startActivity(intent);
+    }
+
     public void carregarActivitySqlLite(View view)
     {
         Intent intent = new Intent(MainActivity.this, SqlLiteActivity.class);
