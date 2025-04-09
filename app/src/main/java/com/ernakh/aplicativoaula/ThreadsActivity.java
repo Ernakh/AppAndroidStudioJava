@@ -48,6 +48,9 @@ public class ThreadsActivity extends AppCompatActivity {
         MinhaThread t = new MinhaThread();
         t.start();
 
+        MinhaThread2 t2 = new MinhaThread2();
+        t2.start();
+
         texto = findViewById(R.id.texto);
         progresso = findViewById(R.id.progresso);
         botao = findViewById(R.id.botao);
@@ -71,6 +74,19 @@ public class ThreadsActivity extends AppCompatActivity {
 
         public void run() {
             Log.i("teste", "thread iniciada");
+        }
+    }
+
+    class MinhaThread2 extends Thread {
+
+        public void run() {
+            try {
+                Thread.sleep(3000);
+                TextView t = (TextView) findViewById(R.id.texto);
+                t.setText("Thread Iniciada");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
