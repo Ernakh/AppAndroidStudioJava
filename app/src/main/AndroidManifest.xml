@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".AppCanalComunicacao"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -30,6 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplicativoAula"
         tools:targetApi="31">
+        <activity
+            android:name=".NotificationActivity"
+            android:exported="false" />
         <activity
             android:name=".ThreadsActivity"
             android:exported="false" />
@@ -84,21 +88,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <service android:name=".NotificationActivity$BackgroundService" />
         <service
             android:name=".ThreadsActivity$MeuServico"
             android:icon="@drawable/ic_launcher_background"
             android:label="Meu Servico"
             android:process=":meu_processo"
-            tools:ignore="Instantiatable">
-        </service>
-        <!-- android:process=":meu_processo"-->
-
+            tools:ignore="Instantiatable"></service> <!-- android:process=":meu_processo" -->
         <service
             android:name=".ThreadsActivity$MinhaIntentService"
-            tools:ignore="Instantiatable,MissingClass">
-    </service>
-
-</application>
+            tools:ignore="Instantiatable,MissingClass"></service>
+    </application>
 
 </manifest>

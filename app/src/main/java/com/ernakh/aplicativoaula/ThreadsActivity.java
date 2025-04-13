@@ -45,8 +45,8 @@ public class ThreadsActivity extends AppCompatActivity {
             return insets;
         });
 
-        MinhaThread t = new MinhaThread();
-        t.start();
+        /*MinhaThread t = new MinhaThread();
+        t.start();*/
 
         MinhaThread2 t2 = new MinhaThread2();
         t2.start();
@@ -159,7 +159,7 @@ public class ThreadsActivity extends AppCompatActivity {
             }, 1000);
 
 
-            return Service.START_NOT_STICKY;
+            return Service.START_STICKY;
         }
 
         @Nullable
