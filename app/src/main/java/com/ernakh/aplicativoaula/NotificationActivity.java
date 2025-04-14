@@ -60,11 +60,9 @@ public class NotificationActivity extends AppCompatActivity {
         }
 
         private void showNotification() {
-            // Criando uma Intent para a Activity que será aberta ao clicar na notificação
             Intent intent = new Intent(this, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_MUTABLE);
 
-            // Criando a notificação
             Notification notification = new NotificationCompat.Builder(this, "default")
                     .setContentTitle("Notificação de Evento")
                     .setContentText("Algo aconteceu!")
@@ -72,7 +70,6 @@ public class NotificationActivity extends AppCompatActivity {
                     .setContentIntent(pendingIntent)
                     .build();
 
-            // Exibindo a notificação
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(1, notification);
         }
