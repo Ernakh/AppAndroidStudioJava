@@ -58,7 +58,6 @@
         android:layout_marginTop="8dp"
         android:onClick="carregarActivitySqlLite"
         android:text="CRUD SqLite"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
@@ -201,4 +200,13 @@
         android:text="Endereço"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvNumero" />
+
+    <Button
+        android:id="@+id/button27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="carregarActivityAPI_CRUD"
+        android:text="API CRUD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button26" />
 </androidx.constraintlayout.widget.ConstraintLayout>

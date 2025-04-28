@@ -74,6 +74,12 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void carregarActivityAPI_CRUD(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, API_CRUD_Activity.class);
+        startActivity(intent);
+    }
+
     public void carregarActivityGPS(View view)
     {
         Intent intent = new Intent(MainActivity.this, GPS_Activity.class);

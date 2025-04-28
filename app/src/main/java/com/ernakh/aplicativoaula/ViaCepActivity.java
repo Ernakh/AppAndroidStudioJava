@@ -83,7 +83,6 @@ public class ViaCepActivity extends AppCompatActivity {
                                         Log.d("JSON", "JSON - final");
                                     }
                                 });
-
                             } catch (Exception e) {
                                 Log.d("JSON", "JSON - erro: " + e.getMessage());
                                 e.printStackTrace();
