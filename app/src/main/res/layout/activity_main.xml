@@ -48,7 +48,6 @@
         android:layout_marginTop="8dp"
         android:onClick="carregarActivityLerUsuario"
         android:text="Ler do Usuário"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvNumero" />
 
@@ -193,4 +192,13 @@
         android:text="Notificações"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button24" />
+
+    <Button
+        android:id="@+id/button26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="carregarActivityEndereco"
+        android:text="Endereço"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvNumero" />
 </androidx.constraintlayout.widget.ConstraintLayout>

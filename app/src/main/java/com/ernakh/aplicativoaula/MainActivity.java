@@ -136,6 +136,12 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void carregarActivityEndereco(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, ViaCepActivity.class);
+        startActivity(intent);
+    }
+
     public void carregarActivityThreads(View view)
     {
         Intent intent = new Intent(MainActivity.this, ThreadsActivity.class);
