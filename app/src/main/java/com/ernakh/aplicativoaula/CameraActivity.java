@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -33,12 +36,39 @@ public class CameraActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 100; //identificar o Intent
     private ImageView imageView;
 
+    private Uri fotoUri;
+    private File fotoArquivo;
+
     private final ActivityResultLauncher<Intent> cameraLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    if (fotoArquivo != null && fotoArquivo.exists()) {
+                        /*Bitmap bitmap = BitmapFactory.decodeFile(fotoArquivo.getAbsolutePath());
+                        imageView.setImageBitmap(bitmap);*/
+                        Bitmap bitmap = BitmapFactory.decodeFile(fotoArquivo.getAbsolutePath());
+                        bitmap = corrigirRotacao(fotoArquivo.getAbsolutePath(), bitmap);
+                        imageView.setImageBitmap(bitmap);
+
+                        try {
+                            saveImageToStorage(bitmap);
+                            Toast.makeText(this, "Foto salva com sucesso!", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            Toast.makeText(this, "Erro ao salvar a foto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
+
+
+    //old
+    /*private final ActivityResultLauncher<Intent> cameraLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result ->
             {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+                    //Bitmap bitmap = BitmapFactory.decodeFile(fotoArquivo.getAbsolutePath());
+                    Bitmap photo = (Bitmap) result.getData().getExtras().get("data");//retorna apenas um thumbnail (miniatura da imagem)
                     imageView.setImageBitmap(photo);
+                    //imageView.setImageBitmap(photo);//thumbnail
 
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
@@ -56,7 +86,38 @@ public class CameraActivity extends AppCompatActivity {
                         Toast.makeText(this, "Erro ao salvar a foto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-            });
+            });*/
+
+    private Bitmap corrigirRotacao(String caminho, Bitmap bitmap) {
+        try {
+            ExifInterface exif = new ExifInterface(caminho);
+            int orientacao = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int rotacao = 0;
+
+            switch (orientacao) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotacao = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotacao = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotacao = 270;
+                    break;
+            }
+
+            if (rotacao != 0) {
+                Matrix matrix = new Matrix();
+                matrix.postRotate(rotacao);
+                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            }
+
+            return bitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return bitmap; // Retorna o original se der erro
+        }
+    }
 
     private void saveImageToStorage(Bitmap bitmap) throws IOException {
 
@@ -109,7 +170,31 @@ public class CameraActivity extends AppCompatActivity {
 
     public void abrirCamera(View view)
     {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 100);
+            return;
+        }
+
+        try
+        {
+            File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            String nomeArquivo = "foto_" + UUID.randomUUID().toString() + ".jpg";
+            fotoArquivo = new File(dir, nomeArquivo);
+            fotoUri = androidx.core.content.FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", fotoArquivo);
+
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fotoUri);
+            cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            cameraLauncher.launch(cameraIntent);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Erro ao abrir a câmera: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        //versão antiga
+        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED)
         {
             // Permissão não concedida, solicitar ao usuário
@@ -119,7 +204,7 @@ public class CameraActivity extends AppCompatActivity {
         }
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraLauncher.launch(cameraIntent);
+        cameraLauncher.launch(cameraIntent);*/
     }
 
     public void voltar(View view)

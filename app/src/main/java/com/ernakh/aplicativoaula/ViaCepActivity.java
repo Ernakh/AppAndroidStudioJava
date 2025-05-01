@@ -54,8 +54,6 @@ public class ViaCepActivity extends AppCompatActivity {
                                 if (conexao.getResponseCode() != 200)
                                     throw new RuntimeException("HTTP error code : " + conexao.getResponseCode());
 
-                                Log.d("JSON", "JSON - antes do buffer");
-
                                 BufferedReader resposta = new BufferedReader(new InputStreamReader((conexao.getInputStream())));
                                 String aux, jsonEmString = "";
                                 while ((aux = resposta.readLine()) != null) {

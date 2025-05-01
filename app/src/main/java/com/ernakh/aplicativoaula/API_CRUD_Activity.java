@@ -90,8 +90,6 @@ public class API_CRUD_Activity extends AppCompatActivity {
 
     public void PostPost(View view) {
         new Thread(() -> {
-
-            Log.d("POST", "1");
             try {
                 EditText edtTitulo = findViewById(R.id.edtTitulo);
                 EditText edtCorpo = findViewById(R.id.edtTexto);
@@ -100,8 +98,6 @@ public class API_CRUD_Activity extends AppCompatActivity {
                 novoPost.setUserId(1);
                 novoPost.setTitle(edtTitulo.getText().toString());
                 novoPost.setBody(edtCorpo.getText().toString());
-
-                Log.d("POST", "2");
 
                 Gson gson = new Gson();
                 String jsonPost = gson.toJson(novoPost);
@@ -112,18 +108,11 @@ public class API_CRUD_Activity extends AppCompatActivity {
                 conexao.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                 conexao.setDoOutput(true);
 
-                Log.d("POST", "3");
-
                 OutputStream os = conexao.getOutputStream();
                 os.write(jsonPost.getBytes("UTF-8"));
                 os.close();
 
-                Log.d("POST", "4");
-
                 int responseCode = conexao.getResponseCode();
-
-                Log.d("POST", "responedCode:" + responseCode);
-
                 TextView txtResultado = findViewById(R.id.textView8);
 
                 if (responseCode == 201) {
